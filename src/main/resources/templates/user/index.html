@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container body-content">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<p th:text="${message}">Welcome!</p>
+
+<nav th:replace="fragments :: usernavigation"></nav>
+
+
+
+<p th:unless="${users} and ${users.size()}">No other users to display</p>
+
+<table class="table">
+    <tr>
+        <th>User</th>
+        <th>User Page</th>
+    </tr>
+
+    <tr th:each="user : ${users}">
+        <td th:text="${user.username}"></td>
+        <td><a th:href="@{'/user/' + ${user.userId}}">info</a></td>
+    </tr>
+</table>
+
+</body>
+</html>
